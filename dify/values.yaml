@@ -4,14 +4,25 @@ global:
 
 api:
   extraEnv:
+    - name: STORAGE_TYPE
+      value: local
     - name: FILESYSTEM_STORAGE_TYPE
       value: local
 
-    - name: STORAGE_TYPE
-      value: local
-
+    # 👇 hard-disable S3 paths
     - name: S3_ENABLED
       value: "false"
+    - name: AWS_S3_BUCKET
+      value: ""
+    - name: AWS_ACCESS_KEY_ID
+      value: ""
+    - name: AWS_SECRET_ACCESS_KEY
+      value: ""
+    - name: AWS_REGION
+      value: ""
+    - name: S3_ENDPOINT
+      value: ""
+
 
 
 web:
@@ -20,14 +31,24 @@ web:
 
 worker:
   extraEnv:
+    - name: STORAGE_TYPE
+      value: local
     - name: FILESYSTEM_STORAGE_TYPE
       value: local
 
-    - name: STORAGE_TYPE
-      value: local
-
+    # 👇 same overrides here
     - name: S3_ENABLED
       value: "false"
+    - name: AWS_S3_BUCKET
+      value: ""
+    - name: AWS_ACCESS_KEY_ID
+      value: ""
+    - name: AWS_SECRET_ACCESS_KEY
+      value: ""
+    - name: AWS_REGION
+      value: ""
+    - name: S3_ENDPOINT
+      value: ""
 pluginDaemon:
   image:
     tag: "1.14.0-rc1"
