@@ -3,25 +3,31 @@ global:
   storageType: local   # 👈 ADD THIS
 
 api:
-  image:
-    tag: "1.14.0-rc1"
   extraEnv:
+    - name: FILESYSTEM_STORAGE_TYPE
+      value: local
+
     - name: STORAGE_TYPE
-      value: local      # 👈 ADD THIS
+      value: local
+
+    - name: S3_ENABLED
+      value: "false"
+
 
 web:
   image:
     tag: "1.14.0-rc1"
 
 worker:
-  image:
-    tag: "1.14.0-rc1"
   extraEnv:
-    - name: PUBSUB_REDIS_CHANNEL_TYPE
-      value: "pubsub"
-    - name: STORAGE_TYPE
-      value: local      # 👈 ADD THIS
+    - name: FILESYSTEM_STORAGE_TYPE
+      value: local
 
+    - name: STORAGE_TYPE
+      value: local
+
+    - name: S3_ENABLED
+      value: "false"
 pluginDaemon:
   image:
     tag: "1.14.0-rc1"
