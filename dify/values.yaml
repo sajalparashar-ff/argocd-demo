@@ -1,11 +1,5 @@
 global:
-  host: "127.0.0.1:8097"
-  enableTLS: false
-
   extraBackendEnvs:
-    - name: SECRET_KEY
-      value: "replace-me"
-
     - name: CONSOLE_API_URL
       value: "http://dify-api-svc"
 
@@ -21,14 +15,6 @@ global:
     - name: APP_WEB_URL
       value: "http://127.0.0.1:8097"
 
-api:
-  podSecurityContext:
-    fsGroup: 1000
-
-worker:
-  podSecurityContext:
-    fsGroup: 1000
-
 web:
   extraEnv:
     - name: SERVICE_API_URL
@@ -39,6 +25,3 @@ web:
 
     - name: CONSOLE_API_URL
       value: "http://dify-api-svc"
-
-ingress:
-  enabled: false
