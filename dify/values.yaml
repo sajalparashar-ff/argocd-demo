@@ -1,0 +1,16 @@
+global:
+  extraBackendEnvs:
+    - name: CONSOLE_API_URL
+      value: "http://dify-api-svc"
+
+    - name: SERVICE_API_URL
+      value: "http://dify-api-svc"
+
+    - name: APP_API_URL
+      value: "http://dify-api-svc"
+
+    - name: CONSOLE_WEB_URL
+      value: "http://localhost:8097"
+
+    - name: APP_WEB_URL
+      value: "http://localhost:8097"
