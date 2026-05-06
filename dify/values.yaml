@@ -1,7 +1,11 @@
 global:
-  imageTag: "1.14.0"
-  secretKey: "change-this-secret"
+  imageTag: "1.13.3"
+
+  # IMPORTANT: change this in real env
+  secretKey: "change-this-secret-key"
+
   storageType: local
+
   vectorStore: weaviate
 
 api:
