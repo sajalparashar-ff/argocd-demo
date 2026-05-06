@@ -1,9 +1,13 @@
 global:
   storageClass: standard
+  storageType: local   # 👈 ADD THIS
 
 api:
   image:
     tag: "1.14.0-rc1"
+  extraEnv:
+    - name: STORAGE_TYPE
+      value: local      # 👈 ADD THIS
 
 web:
   image:
@@ -15,6 +19,8 @@ worker:
   extraEnv:
     - name: PUBSUB_REDIS_CHANNEL_TYPE
       value: "pubsub"
+    - name: STORAGE_TYPE
+      value: local      # 👈 ADD THIS
 
 pluginDaemon:
   image:
