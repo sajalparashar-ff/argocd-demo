@@ -1,40 +1,33 @@
 global:
-  image:
-    tag: "1.14.0"
+  imageTag: "1.14.0"
+  secretKey: "change-this-secret"
+  storageType: local
+  vectorStore: weaviate
 
 api:
-  image:
-    tag: "1.14.0"
+  enabled: true
+  replicaCount: 1
 
 web:
-  image:
-    tag: "1.14.0"
+  enabled: true
+  replicaCount: 1
 
 worker:
-  image:
-    tag: "1.14.0"
-
-pluginDaemon:
-  image:
-    tag: "1.14.0"
-
-postgresql:
   enabled: true
+  replicaCount: 1
 
-redis:
+sandbox:
   enabled: true
 
 weaviate:
   enabled: true
 
-ingress:
-  enabled: false
-
-persistence:
+postgresql:
   enabled: true
-  size: 10Gi
+  auth:
+    username: dify
+    password: dify
+    database: dify
 
-env:
-  SECRET_KEY: "change-me-to-a-long-random-string"
-  STORAGE_TYPE: "local"
-  VECTOR_STORE: "weaviate"
+redis:
+  enabled: true
