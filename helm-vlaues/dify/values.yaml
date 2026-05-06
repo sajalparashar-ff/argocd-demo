@@ -1,28 +1,57 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: dify
-  namespace: argocd
+global:
+  storageClass: standard
+  storageType: "local"
 
-spec:
-  project: default
+  image:
+    tag: "1.14.0-rc1"
 
-  source:
-    repoURL: https://github.com/sajalparshar-ff/argocd-demo   # ✅ YOUR repo
-    targetRevision: HEAD
-    path: helm-values/dify                                  # ✅ your folder
+  extraBackendEnvs:
+    - name: SECRET_KEY
+      value: "replace-with-your-own-secret"
 
-    helm:
-      valueFiles:
-        - values.yaml                                       # ✅ your file
+    - name: STORAGE_TYPE
+      value: "local"
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: dify
+    - name: FILESYSTEM_STORAGE_TYPE
+      value: "local"
 
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+    - name: S3_ENABLED
+      value: "false"
+
+api:
+  image:
+    tag: "1.14.0-rc1"
+
+  podSecurityContext:
+    fsGroup: 1000
+
+web:
+  image:
+    tag: "1.14.0-rc1"
+
+worker:
+  image:
+    tag: "1.14.0-rc1"
+
+  podSecurityContext:
+    fsGroup: 1000
+
+  extraEnv:
+    - name: PUBSUB_REDIS_CHANNEL_TYPE
+      value: "pubsub"
+
+pluginDaemon:
+  image:
+    tag: "1.14.0-rc1"
+
+sandbox:
+  image:
+    repository: svcvit/dify-sandbox-py
+    tag: "0.1.4"
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+ingress:
+  enabled: false
