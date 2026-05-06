@@ -8,19 +8,13 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/douban/charts
-    targetRevision: master
-    path: charts/dify
+    repoURL: https://github.com/sajalparashar-ff/argocd-demo   
+    targetRevision: HEAD
+    path: helm-values/dify
 
     helm:
-      values: |
-        image:
-          tag: "1.14.0-rc1"
-
-        worker:
-          extraEnv:
-            - name: PUBSUB_REDIS_CHANNEL_TYPE
-              value: "pubsub"
+      valueFiles:
+        - values.yaml
 
   destination:
     server: https://kubernetes.default.svc
