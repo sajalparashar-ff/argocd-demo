@@ -1,0 +1,25 @@
+global:
+  storageClass: standard
+
+api:
+  image:
+    tag: "1.14.0-rc1"
+
+web:
+  image:
+    tag: "1.14.0-rc1"
+
+worker:
+  image:
+    tag: "1.14.0-rc1"
+  extraEnv:
+    - name: PUBSUB_REDIS_CHANNEL_TYPE
+      value: "pubsub"
+
+pluginDaemon:
+  image:
+    tag: "1.14.0-rc1"
+
+persistence:
+  enabled: true
+  size: 10Gi
