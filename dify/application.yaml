@@ -44,7 +44,7 @@ spec:
         pluginDaemon:
           image:
             repository: langgenius/dify-plugin-daemon
-            tag: "latest"
+            tag: "0.0.7"
 
         sandbox:
           image:
