@@ -7,9 +7,9 @@ spec:
   project: default
 
   source:
-    repoURL: https://douban.github.io/charts/
-    chart: dify
-    targetRevision: 0.9.1
+    repoURL: https://github.com/langgenius/dify
+    targetRevision: 1.14.0
+    path: deploy/helm
 
     helm:
       valueFiles:

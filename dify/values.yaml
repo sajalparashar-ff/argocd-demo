@@ -1,75 +1,49 @@
 global:
-  storageType: "local"
-
-  extraBackendEnvs:
-    - name: SECRET_KEY
-      value: "my-secret-key"
-
-    - name: STORAGE_TYPE
-      value: "local"
-
-    - name: FILESYSTEM_STORAGE_TYPE
-      value: "local"
-
-    - name: S3_ENABLED
-      value: "false"
-
-    # backend internal config
-    - name: CONSOLE_API_URL
-      value: "http://dify-api-svc"
-
-    - name: SERVICE_API_URL
-      value: "http://dify-api-svc"
-
-    - name: APP_API_URL
-      value: "http://dify-api-svc"
-
+  image:
+    tag: "1.14.0"
+  storageClass: ""
 
 api:
+  replicaCount: 1
   image:
     repository: langgenius/dify-api
     tag: "1.14.0"
 
-
 web:
+  replicaCount: 1
   image:
     repository: langgenius/dify-web
     tag: "1.14.0"
 
-  extraEnv:
-    # IMPORTANT FIX: frontend must use browser-accessible API
-    - name: CONSOLE_API_URL
-      value: "http://localhost:5001"
-
-    - name: SERVICE_API_URL
-      value: "http://localhost:5001"
-
-    - name: APP_API_URL
-      value: "http://localhost:5001"
-
-
 worker:
+  replicaCount: 1
   image:
     repository: langgenius/dify-worker
     tag: "1.14.0"
 
-
 pluginDaemon:
+  replicaCount: 1
   image:
     repository: langgenius/dify-plugin-daemon
     tag: "1.14.0"
 
+postgresql:
+  enabled: true
 
-sandbox:
-  image:
-    repository: svcvit/dify-sandbox-py
-    tag: "0.1.4"
+redis:
+  enabled: true
 
+weaviate:
+  enabled: true
+
+ingress:
+  enabled: false
 
 persistence:
   enabled: true
   size: 10Gi
 
-
-ingress:
-  enabled: false
+env:
+  SECRET_KEY: "change-this-to-a-long-random-string"
+  STORAGE_TYPE: "local"
+  VECTOR_STORE: "weaviate"
