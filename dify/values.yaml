@@ -14,7 +14,7 @@ global:
     - name: S3_ENABLED
       value: "false"
 
-    # 🔥 critical frontend/backend fix
+    # backend internal config
     - name: CONSOLE_API_URL
       value: "http://dify-api-svc"
 
@@ -37,14 +37,15 @@ web:
     tag: "1.14.0"
 
   extraEnv:
+    # IMPORTANT FIX: frontend must use browser-accessible API
     - name: CONSOLE_API_URL
-      value: "http://dify-api-svc"
+      value: "http://localhost:5001"
 
     - name: SERVICE_API_URL
-      value: "http://dify-api-svc"
+      value: "http://localhost:5001"
 
     - name: APP_API_URL
-      value: "http://dify-api-svc"
+      value: "http://localhost:5001"
 
 
 worker:
