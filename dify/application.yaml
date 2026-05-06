@@ -41,10 +41,7 @@ spec:
             - name: PUBSUB_REDIS_CHANNEL_TYPE
               value: "pubsub"
 
-        pluginDaemon:
-          image:
-            repository: langgenius/dify-plugin-daemon
-            tag: "0.0.7"
+
 
         sandbox:
           image:
