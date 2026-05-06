@@ -14,3 +14,14 @@ global:
 
     - name: APP_WEB_URL
       value: "http://localhost:8097"
+
+web:
+  extraEnv:
+    - name: SERVICE_API_URL
+      value: "http://dify-api-svc"
+
+    - name: APP_API_URL
+      value: "http://dify-api-svc"
+
+    - name: CONSOLE_API_URL
+      value: "http://dify-api-svc"
