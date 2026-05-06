@@ -1,5 +1,20 @@
 global:
+  storageType: "local"
+
   extraBackendEnvs:
+    - name: SECRET_KEY
+      value: "my-secret-key"
+
+    - name: STORAGE_TYPE
+      value: "local"
+
+    - name: FILESYSTEM_STORAGE_TYPE
+      value: "local"
+
+    - name: S3_ENABLED
+      value: "false"
+
+    # 🔥 critical frontend/backend fix
     - name: CONSOLE_API_URL
       value: "http://dify-api-svc"
 
@@ -9,19 +24,51 @@ global:
     - name: APP_API_URL
       value: "http://dify-api-svc"
 
-    - name: CONSOLE_WEB_URL
-      value: "http://127.0.0.1:8097"
 
-    - name: APP_WEB_URL
-      value: "http://127.0.0.1:8097"
+api:
+  image:
+    repository: langgenius/dify-api
+    tag: "1.14.0"
+
 
 web:
+  image:
+    repository: langgenius/dify-web
+    tag: "1.14.0"
+
   extraEnv:
+    - name: CONSOLE_API_URL
+      value: "http://dify-api-svc"
+
     - name: SERVICE_API_URL
       value: "http://dify-api-svc"
 
     - name: APP_API_URL
       value: "http://dify-api-svc"
 
-    - name: CONSOLE_API_URL
-      value: "http://dify-api-svc"
+
+worker:
+  image:
+    repository: langgenius/dify-worker
+    tag: "1.14.0"
+
+
+pluginDaemon:
+  image:
+    repository: langgenius/dify-plugin-daemon
+    tag: "1.14.0"
+
+
+sandbox:
+  image:
+    repository: svcvit/dify-sandbox-py
+    tag: "0.1.4"
+
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+
+ingress:
+  enabled: false

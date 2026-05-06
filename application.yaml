@@ -3,14 +3,17 @@ kind: Application
 metadata:
   name: dify
   namespace: argocd
-
 spec:
   project: default
 
   source:
-    repoURL: https://github.com/sajalparashar-ff/argocd-demo
-    targetRevision: HEAD
-    path: dify   # 👈 THIS MUST MATCH YOUR FOLDER
+    repoURL: https://douban.github.io/charts/
+    chart: dify
+    targetRevision: 0.9.1
+
+    helm:
+      valueFiles:
+        - values.yaml
 
   destination:
     server: https://kubernetes.default.svc
