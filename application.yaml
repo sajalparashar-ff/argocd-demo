@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dify
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/sajalparashar-ff/argocd-demo
+    targetRevision: HEAD
+    path: dify   # 👈 THIS MUST MATCH YOUR FOLDER
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dify
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
